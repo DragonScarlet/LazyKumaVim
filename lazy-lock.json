@@ -18,6 +18,7 @@
   "nvim-jdtls": { "branch": "master", "commit": "96e3978c3fdae3950f6ccda548775e8b8952f74a" },
   "nvim-lspconfig": { "branch": "master", "commit": "a59d74e12340242c0735666fb2e91afdbe6f2496" },
   "nvim-notify": { "branch": "master", "commit": "ea9c8ce7a37f2238f934e087c255758659948e0f" },
+  "nvim-test": { "branch": "main", "commit": "e06f3d029ee161f3ead6193cf27354d1eb8723c3" },
   "nvim-tree.lua": { "branch": "master", "commit": "59e65d88db177ad1e6a8cffaafd4738420ad20b6" },
   "nvim-treesitter": { "branch": "master", "commit": "4c4d586a05e236d8199ab6faab8cb733a9b5bd24" },
   "nvim-ts-rainbow": { "branch": "master", "commit": "ef95c15a935f97c65a80e48e12fe72d49aacf9b9" },
