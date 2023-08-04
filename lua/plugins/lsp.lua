@@ -1,5 +1,6 @@
 return {
     'VonHeikemen/lsp-zero.nvim',
+    enabled = true,
     branch = 'v1.x',
     dependencies = {
         { 'neovim/nvim-lspconfig' },             -- Required
@@ -16,6 +17,7 @@ return {
 
         -- Snippets
         { 'L3MON4D3/LuaSnip' },             -- Required
+        { 'rafamadriz/friendly-snippets' }, -- Optional
         { 'rafamadriz/friendly-snippets' }, -- Optional
     },
     config = function()
@@ -38,6 +40,28 @@ return {
             underline = true,
             severity_sort = false,
             float = true,
+        })
+
+        -- You need to setup `cmp` after lsp-zero
+        local cmp = require('cmp')
+--        local lspkind = require('lspkind')
+
+        cmp.setup({
+            mapping = cmp.mapping.preset.insert({
+                ['<C-Space>'] = cmp.mapping.complete(),
+            }),
+            snippet = {
+                expand = function(args)
+                    require('luasnip').lsp_expand(args.body)
+                end,
+            },
+            sources = cmp.config.sources({
+                { name = "codeium" },
+                { name = "nvim_lsp" },
+                { name = "luasnip" },
+                { name = "buffer" },
+                { name = "path" },
+            }),
         })
     end
 }
