@@ -1,9 +1,10 @@
 return {
     'mfussenegger/nvim-jdtls',
     config = function()
+        local home = os.getenv('HOME')
         local config = {
-            cmd = { '/Users/U127215/.local/share/nvim/mason/packages/jdtls/bin/jdtls' },
-            root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+            cmd = { home .. '.local/share/nvim/mason/packages/jdtls/bin/jdtls' },
+            root_dir = vim.fs.dirname(vim.fs.find({ '.pom', 'mvnw' }, { upward = true })[1]),
         }
         require('jdtls').start_or_attach(config)
     end
