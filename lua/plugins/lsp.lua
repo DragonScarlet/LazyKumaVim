@@ -18,7 +18,6 @@ return {
         -- Snippets
         { 'L3MON4D3/LuaSnip' },             -- Required
         { 'rafamadriz/friendly-snippets' }, -- Optional
-        { 'rafamadriz/friendly-snippets' }, -- Optional
     },
     config = function()
         local lsp = require('lsp-zero')
