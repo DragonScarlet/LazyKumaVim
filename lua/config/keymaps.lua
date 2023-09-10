@@ -16,4 +16,8 @@ keymap("n", "<leader>ff", ":lua vim.lsp.buf.format() <CR>")
 keymap("n", "<leader>pt", "<cmd>NvimTreeToggle<CR>")
 
 -- Git
-keymap("n", "<leader>gs", vim.cmd.Git);
+keymap("n", "<leader>gs", vim.cmd.Git)
+
+-- Dap
+keymap("n", "<leader>df", "<Cmd>lua require'jdtls'.test_class()<CR>")
+keymap("n", "<leader>dn", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>")
