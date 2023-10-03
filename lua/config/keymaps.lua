@@ -10,6 +10,9 @@ command('Qq', 'q! | q! | q!', {})
 keymap("v", "<leader>f", ":'<, '> lua vim.lsp.buf.format() <CR>", { desc = "Format selection" })
 keymap("n", "<leader>ff", ":lua vim.lsp.buf.format() <CR>", { desc = "File Format" })
 
+-- File
+keymap("n", "<leader>fc", ":%yank +<CR>", { desc = "File Copy" })
+keymap("n", "<leader>fp", ":%delete | put +<CR>", { desc = "File Paste" })
 
 -- nvim-tree
 keymap("n", "<leader>pt", "<cmd>NvimTreeToggle<CR>", { desc = "Project Tree" })
