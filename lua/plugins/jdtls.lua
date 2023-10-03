@@ -126,8 +126,8 @@ return {
             require('jdtls.dap').setup_dap_main_class_configs()
 
             local opts = { buffer = bufnr }
-            vim.keymap.set('n', '<leader>df', "<cmd>lua require('jdtls').test_class()<cr>", opts)
-            vim.keymap.set('n', '<leader>dn', "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
+            vim.keymap.set('n', '<leader>tc', "<cmd>lua require('jdtls').test_class()<cr>", opts)
+            vim.keymap.set('n', '<leader>tf', "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
         end
 
         local function jdtls_on_attach(client, bufnr)
@@ -143,13 +143,12 @@ return {
             -- https://github.com/mfussenegger/nvim-jdtls#usage
 
             local opts = { buffer = bufnr }
-            vim.keymap.set('n', '<A-o>', "<cmd>lua require('jdtls').organize_imports()<cr>", opts)
-            vim.keymap.set('n', 'crv', "<cmd>lua require('jdtls').extract_variable()<cr>", opts)
-            vim.keymap.set('x', 'crv', "<esc><cmd>lua require('jdtls').extract_variable(true)<cr>", opts)
-            vim.keymap.set('n', 'crc', "<cmd>lua require('jdtls').extract_constant()<cr>", opts)
-            vim.keymap.set('x', 'crc', "<esc><cmd>lua require('jdtls').extract_constant(true)<cr>", opts)
-            vim.keymap.set('x', 'crm', "<esc><Cmd>lua require('jdtls').extract_method(true)<cr>", opts)
-            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts, { desc = "Code Action" })
+            vim.keymap.set('n', '<leader>cD', vim.lsp.buf.declaration, opts, "Go to Declaration")
+            vim.keymap.set('n', '<leader>cd', vim.lsp.buf.definition, opts, "Go to definition")
+            vim.keymap.set('n', '<leader>ci', vim.lsp.buf.implementation, opts, "Go to implementation")
+            vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover,  opts, "Hover")
+            vim.keymap.set('n', '<leader>cs', vim.lsp.buf.signature_help, opts, "Signature")
         end
 
         local function jdtls_setup(event)
