@@ -26,7 +26,7 @@ return {
             'tsserver',
             'eslint',
         })
-
+        lsp.skip_server_setup({'jdtls'})
         -- (Optional) Configure lua language server for neovim
         lsp.nvim_workspace()
 
