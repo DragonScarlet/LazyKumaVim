@@ -93,10 +93,10 @@ return {
                     name = 'JavaSE-17',
                     path = vim.fn.expand('~/.sdkman/candidates/java/17.0.8.1-tem/'),
                 },
-                ---{
-                --  name = 'JavaSE-11',
-                --  path = vim.fn.expand('~/.sdkman/candidates/java/11.0.10-zulu'),
-                --},
+                {
+                  name = 'JavaSE-11',
+                  path = vim.fn.expand('~/.sdkman/candidates/java/11.0.20-tem'),
+                },
                 {
                     name = 'JavaSE-1.8',
                     path = vim.fn.expand('~/.sdkman/candidates/java/8.0.382-zulu'),
@@ -126,8 +126,28 @@ return {
             require('jdtls.dap').setup_dap_main_class_configs()
 
             local opts = { buffer = bufnr }
-            vim.keymap.set('n', '<leader>tc', "<cmd>lua require('jdtls').test_class()<cr>", opts)
-            vim.keymap.set('n', '<leader>tf', "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
+            vim.keymap.set('n', '<leader>dc', "<cmd>lua require('jdtls').test_class()<cr>", opts)
+            vim.keymap.set('n', '<leader>df', "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
+
+            local dap, dapui = require("dap"), require("dapui")
+            dapui.setup()
+            dap.listeners.after.event_initialized["dapui_config"] = function()
+                dapui.open()
+            end
+            dap.listeners.before.event_terminated["dapui_config"] = function()
+                dapui.close()
+            end
+            dap.listeners.before.event_exited["dapui_config"] = function()
+                dapui.close()
+            end
+            vim.fn.sign_define('DapBreakpoint', { text = '󰱯', texthl = '', linehl = '', numhl = '' })
+            vim.fn.sign_define('DapStopped', { text = '󰞇', texthl = '', linehl = '', numhl = '' })
+
+            vim.keymap.set('n', '<F5>', ":DapContinue<CR>")
+            vim.keymap.set('n', '<F6>', ":DapStepOver<CR>")
+            vim.keymap.set('n', '<F7>', ":DapStepInto<CR>")
+            vim.keymap.set('n', '<F8>', ":DapStepOut<CR>")
+            vim.keymap.set('n', '<leader>db', ":DapToggleBreakpoint<CR>")
         end
 
         local function jdtls_on_attach(client, bufnr)
@@ -143,12 +163,12 @@ return {
             -- https://github.com/mfussenegger/nvim-jdtls#usage
 
             local opts = { buffer = bufnr }
-            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts, { desc = "Code Action" })
-            vim.keymap.set('n', '<leader>cD', vim.lsp.buf.declaration, opts, "Go to Declaration")
-            vim.keymap.set('n', '<leader>cd', vim.lsp.buf.definition, opts, "Go to definition")
-            vim.keymap.set('n', '<leader>ci', vim.lsp.buf.implementation, opts, "Go to implementation")
-            vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover,  opts, "Hover")
-            vim.keymap.set('n', '<leader>cs', vim.lsp.buf.signature_help, opts, "Signature")
+            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+            vim.keymap.set('n', '<leader>cD', vim.lsp.buf.declaration, opts)
+            vim.keymap.set('n', '<leader>cd', vim.lsp.buf.definition, opts)
+            vim.keymap.set('n', '<leader>ci', vim.lsp.buf.implementation, opts)
+            vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, opts)
+            vim.keymap.set('n', '<leader>cs', vim.lsp.buf.signature_help, opts)
         end
 
         local function jdtls_setup(event)

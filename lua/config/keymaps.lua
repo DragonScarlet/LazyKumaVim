@@ -16,6 +16,7 @@ keymap("n", "<leader>fp", ":%delete | put +<CR>", { desc = "File Paste" })
 
 -- nvim-tree
 keymap("n", "<leader>pt", "<cmd>NvimTreeToggle<CR>", { desc = "Project Tree" })
+keymap("n", "<leader>pe", "<cmd>TroubleToggle<CR>", { desc = "Project Errors" })
 
 -- Git
 keymap("n", "<leader>gs", vim.cmd.Git, { desc = "Git Status" })
