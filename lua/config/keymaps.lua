@@ -31,5 +31,9 @@ keymap('n', '<leader>ch', vim.lsp.buf.hover, { desc = "Hover" })
 keymap('n', '<leader>cs', vim.lsp.buf.signature_help, { desc = "Signature" })
 
 -- Dap
-keymap("n", "<leader>tc", "<Cmd>lua require'jdtls'.test_class()<CR>", { desc = "Test Class" })
-keymap("n", "<leader>tf", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", { desc = "Test Function" })
+keymap("n", "<leader>dc", "<Cmd>lua require'jdtls'.test_class()<CR>", { desc = "Test Class" })
+keymap("n", "<leader>df", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", { desc = "Test Function" })
+
+-- Term
+keymap("n", "<leader>t", "<Cmd>ToggleTerm<CR>", { desc = "Terminal" })
+
