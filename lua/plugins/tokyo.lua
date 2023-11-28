@@ -1,6 +1,6 @@
 return {
     'folke/tokyonight.nvim',
-    enabled = false,
+    enabled = true,
     config = function()
         require("tokyonight").setup({
             -- your configuration comes here
