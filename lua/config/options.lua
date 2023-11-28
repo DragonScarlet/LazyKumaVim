@@ -27,3 +27,8 @@ vim.opt.updatetime     = 50
 
 -- vim.opt.colorcolumn = "80"
 vim.opt.clipboard      = 'unnamedplus'
+vim.cmd('highlight CursorInsert guibg=#9ece6a')
+vim.cmd('highlight CursorNormal guibg=#f7768e')
+vim.cmd('highlight CursorVisual guibg=#2ac3de')
+-- Set guicursor option
+vim.o.guicursor = 'n:CursorNormal,i:CursorInsert,v:CursorVisual'

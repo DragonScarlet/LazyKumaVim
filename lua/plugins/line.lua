@@ -70,6 +70,7 @@ return {
             red      = '#ec5f67',
         }
 
+
         local conditions = {
             buffer_not_empty = function()
                 return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -133,7 +134,31 @@ return {
             function()
                 return ''
             end,
-            color = { fg = colors.blue },      -- Sets highlighting of component
+            color = function()
+                -- auto change color according to neovims mode
+                local mode_color = {
+                    n = colors.red,
+                    i = colors.green,
+                    v = colors.blue,
+                    [''] = colors.blue,
+                    V = colors.blue,
+                    c = colors.magenta,
+                    no = colors.red,
+                    s = colors.orange,
+                    S = colors.orange,
+                    ic = colors.yellow,
+                    R = colors.violet,
+                    Rv = colors.violet,
+                    cv = colors.red,
+                    ce = colors.red,
+                    r = colors.cyan,
+                    rm = colors.cyan,
+                    ['r?'] = colors.cyan,
+                    ['!'] = colors.red,
+                    t = colors.red,
+                }
+                return { fg = mode_color[vim.fn.mode()] }
+            end,
             padding = { left = 0, right = 1 }, -- We don't need space before this
         }
 
@@ -206,6 +231,16 @@ return {
         }
 
         ins_left {
+            function()
+                if vim.fn.reg_recording() ~= '' then
+                  return 'Recording'
+                end
+                return ''
+            end,
+        }
+
+
+        ins_left {
             -- Lsp server name .
             function()
                 local icons = {
@@ -236,7 +271,31 @@ return {
                 return msg
             end,
             icon = '( ˘▽˘)っ',
-            color = { fg = colors.blue, gui = 'bold' },
+            color = function()
+                -- auto change color according to neovims mode
+                local mode_color = {
+                    n = colors.red,
+                    i = colors.green,
+                    v = colors.blue,
+                    [''] = colors.blue,
+                    V = colors.blue,
+                    c = colors.magenta,
+                    no = colors.red,
+                    s = colors.orange,
+                    S = colors.orange,
+                    ic = colors.yellow,
+                    R = colors.violet,
+                    Rv = colors.violet,
+                    cv = colors.red,
+                    ce = colors.red,
+                    r = colors.cyan,
+                    rm = colors.cyan,
+                    ['r?'] = colors.cyan,
+                    ['!'] = colors.red,
+                    t = colors.red,
+                }
+                return { fg = mode_color[vim.fn.mode()] }
+            end,
         }
 
         -- Add components to right sections
@@ -276,7 +335,31 @@ return {
             function()
                 return ''
             end,
-            color = { fg = colors.blue },
+            color = function()
+                -- auto change color according to neovims mode
+                local mode_color = {
+                    n = colors.red,
+                    i = colors.green,
+                    v = colors.blue,
+                    [''] = colors.blue,
+                    V = colors.blue,
+                    c = colors.magenta,
+                    no = colors.red,
+                    s = colors.orange,
+                    S = colors.orange,
+                    ic = colors.yellow,
+                    R = colors.violet,
+                    Rv = colors.violet,
+                    cv = colors.red,
+                    ce = colors.red,
+                    r = colors.cyan,
+                    rm = colors.cyan,
+                    ['r?'] = colors.cyan,
+                    ['!'] = colors.red,
+                    t = colors.red,
+                }
+                return { fg = mode_color[vim.fn.mode()] }
+            end,
             padding = { left = 1 },
         }
 

@@ -22,6 +22,9 @@ keymap("n", "<leader>pe", "<cmd>TroubleToggle<CR>", { desc = "Project Errors" })
 keymap("n", "<leader>gs", vim.cmd.Git, { desc = "Git Status" })
 keymap('n', '<leader>gr', ":2,$s/pick/s<CR>", { desc = "Git Replace (Pick with S)" })
 
+-- MSP
+keymap('n', '<leader>kr', ":%delete | put +<CR>:%s/develop/acc<CR>:%s/dev/acc<CR>", { desc = "Kuma Replace" })
+
 -- Java
 keymap('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Action" })
 keymap('n', '<leader>cD', vim.lsp.buf.declaration, { desc = "Go to Declaration" })
@@ -33,6 +36,7 @@ keymap('n', '<leader>cs', vim.lsp.buf.signature_help, { desc = "Signature" })
 -- Dap
 keymap("n", "<leader>dc", "<Cmd>lua require'jdtls'.test_class()<CR>", { desc = "Test Class" })
 keymap("n", "<leader>df", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", { desc = "Test Function" })
+keymap("n", "<leader>dt", "<Cmd>DapToggleRepl<CR>", { desc = "Toggle Relp" })
 
 -- Term
 keymap("n", "<leader>t", "<Cmd>ToggleTerm<CR>", { desc = "Terminal" })
