@@ -149,10 +149,10 @@ return {
             vim.fn.sign_define('DapBreakpoint', { text = '󰱯', texthl = '', linehl = '', numhl = '' })
             vim.fn.sign_define('DapStopped', { text = '󰞇', texthl = '', linehl = '', numhl = '' })
 
-            vim.keymap.set('n', '<F5>', ":DapContinue<CR>")
-            vim.keymap.set('n', '<F6>', ":DapStepOver<CR>")
-            vim.keymap.set('n', '<F7>', ":DapStepInto<CR>")
-            vim.keymap.set('n', '<F8>', ":DapStepOut<CR>")
+            vim.keymap.set('n', '<leader><Left>', ":DapContinue<CR>")
+            vim.keymap.set('n', '<leader><Right>', ":DapStepOver<CR>")
+            vim.keymap.set('n', '<leader><Down>', ":DapStepInto<CR>")
+            vim.keymap.set('n', '<leader><Up>', ":DapStepOut<CR>")
             vim.keymap.set('n', '<leader>db', ":DapToggleBreakpoint<CR>")
         end
 
