@@ -132,20 +132,19 @@ return {
             vim.keymap.set('n', '<leader>dc', "<cmd>lua require('jdtls').test_class()<cr>", opts)
             vim.keymap.set('n', '<leader>df', "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
 
-            local dap, dapui, tree = require("dap"), require("dapui"), require("nvim-tree.api")
-            local dap, dapui = require("dap"), require("dapui")
+            local dap, dapui, api = require("dap"), require("dapui"), require("nvim-tree.api")
             dapui.setup()
             dap.listeners.after.event_initialized["dapui_config"] = function()
-                tree.tree.close()
+                api.tree.close()
                 dapui.open()
             end
             dap.listeners.before.event_terminated["dapui_config"] = function()
                 dapui.close()
-                tree.tree.open()
+                api.tree.open()
             end
             dap.listeners.before.event_exited["dapui_config"] = function()
                 dapui.close()
-                tree.tree.open()
+                api.tree.open()
             end
             vim.fn.sign_define('DapBreakpoint', { text = '󰱯', texthl = '', linehl = '', numhl = '' })
             vim.fn.sign_define('DapStopped', { text = '󰞇', texthl = '', linehl = '', numhl = '' })
