@@ -1,5 +1,8 @@
 return {
     'mfussenegger/nvim-jdtls',
+    dependencies = {
+        { 'nvim-tree/nvim-tree.lua' }
+    },
     config = function()
         local java_cmds = vim.api.nvim_create_augroup('java_cmds', { clear = true })
         local cache_vars = {}
@@ -94,8 +97,8 @@ return {
                     path = vim.fn.expand('~/.sdkman/candidates/java/17.0.8.1-tem/'),
                 },
                 {
-                  name = 'JavaSE-11',
-                  path = vim.fn.expand('~/.sdkman/candidates/java/11.0.20-tem'),
+                    name = 'JavaSE-11',
+                    path = vim.fn.expand('~/.sdkman/candidates/java/11.0.20-tem'),
                 },
                 {
                     name = 'JavaSE-1.8',
@@ -129,16 +132,20 @@ return {
             vim.keymap.set('n', '<leader>dc', "<cmd>lua require('jdtls').test_class()<cr>", opts)
             vim.keymap.set('n', '<leader>df', "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
 
+            local dap, dapui, tree = require("dap"), require("dapui"), require("nvim-tree.api")
             local dap, dapui = require("dap"), require("dapui")
             dapui.setup()
             dap.listeners.after.event_initialized["dapui_config"] = function()
+                tree.tree.close()
                 dapui.open()
             end
             dap.listeners.before.event_terminated["dapui_config"] = function()
                 dapui.close()
+                tree.tree.open()
             end
             dap.listeners.before.event_exited["dapui_config"] = function()
                 dapui.close()
+                tree.tree.open()
             end
             vim.fn.sign_define('DapBreakpoint', { text = '󰱯', texthl = '', linehl = '', numhl = '' })
             vim.fn.sign_define('DapStopped', { text = '󰞇', texthl = '', linehl = '', numhl = '' })
