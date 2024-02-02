@@ -233,12 +233,52 @@ return {
         ins_left {
             function()
                 if vim.fn.reg_recording() ~= '' then
-                  return 'Recording'
+                    return 'Recording'
                 end
                 return ''
             end,
         }
 
+
+        ins_left {
+            function()
+                local status = require("ollama").status()
+
+                if status == "IDLE" then
+                    return "󱙺" -- nf-md-robot-outline
+                elseif status == "WORKING" then
+                    return "󰚩" -- nf-md-robot
+                end
+            end,
+            cond = function()
+                return package.loaded["ollama"] and require("ollama").status() ~= nil
+            end,
+            color = function()
+                -- auto change color according to neovims mode
+                local mode_color = {
+                    n = colors.red,
+                    i = colors.green,
+                    v = colors.blue,
+                    [''] = colors.blue,
+                    V = colors.blue,
+                    c = colors.magenta,
+                    no = colors.red,
+                    s = colors.orange,
+                    S = colors.orange,
+                    ic = colors.yellow,
+                    R = colors.violet,
+                    Rv = colors.violet,
+                    cv = colors.red,
+                    ce = colors.red,
+                    r = colors.cyan,
+                    rm = colors.cyan,
+                    ['r?'] = colors.cyan,
+                    ['!'] = colors.red,
+                    t = colors.red,
+                }
+                return { fg = mode_color[vim.fn.mode()] }
+            end,
+        }
 
         ins_left {
             -- Lsp server name .
