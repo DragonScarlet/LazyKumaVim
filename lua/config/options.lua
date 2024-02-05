@@ -11,7 +11,8 @@ vim.opt.wrap           = false
 
 vim.opt.swapfile       = false
 vim.opt.backup         = false
-vim.opt.undodir        = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir        = os.getenv("HOME") .. "/.undo/undodir"
+vim.opt.undofile       = true
 vim.opt.incsearch      = true
 
 vim.opt.hlsearch       = false
@@ -32,3 +33,6 @@ vim.cmd('highlight CursorNormal guibg=#f7768e')
 vim.cmd('highlight CursorVisual guibg=#2ac3de')
 -- Set guicursor option
 vim.o.guicursor = 'n:CursorNormal,i:CursorInsert,v:CursorVisual'
+
+
+
